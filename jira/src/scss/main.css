@@ -1,0 +1,211 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.siderBar {
+  background: #00152A;
+  width: 64px;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.siderBar .siderBarItem {
+  padding-top: 30px;
+}
+
+.siderBar .siderBarItem .createTask, .siderBar .siderBarItem .search {
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.siderBar .siderBarItem .createTask i, .siderBar .siderBarItem .search i {
+  width: 100%;
+  padding: 10px 0px 10px 25px;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+.siderBar .siderBarItem .createTask i span, .siderBar .siderBarItem .search i span {
+  padding-left: 32px;
+  white-space: nowrap;
+  font-weight: 300;
+}
+
+.siderBar:hover {
+  width: 200px;
+}
+
+.siderBar .createTask:hover {
+  background: #1790FF;
+  cursor: pointer;
+}
+
+.siderBar .search:hover {
+  background: #1790FF;
+  cursor: pointer;
+}
+
+.menu {
+  background-color: #F4F5F7;
+  width: 300px;
+}
+
+.menu .userInfo {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 30px;
+}
+
+.menu .userInfo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.menu .userInfo .user-body span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.menu .menuItem .menuItemPJ {
+  margin-top: 60px;
+  border-bottom: solid 1px #b3b5b8;
+}
+
+.menu .menuItem .menuItemPJ .list-group-item {
+  background: none;
+  border: none;
+}
+
+.menu .menuItem .menuItemPJ .list-group-item i {
+  margin-right: 6px;
+}
+
+.menu .menuItem .menuItemAction {
+  margin-top: 20px;
+}
+
+.menu .menuItem .menuItemAction .list-group-item {
+  background: none;
+  border: none;
+}
+
+.menu .menuItem .menuItemAction .list-group-item i {
+  margin-right: 6px;
+}
+
+.menuItem .list-group .list-group-item:hover {
+  cursor: pointer;
+  background: #c8cbcd;
+}
+
+.mainContents {
+  padding-top: 10px;
+  padding-left: 30px !important;
+}
+
+.mainContents .breadcrumb {
+  padding: 0px;
+  margin-bottom: 0px;
+  background: none;
+}
+
+.mainContents .title {
+  padding-top: 10px;
+}
+
+.mainContents .title .navbarTab {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mainContents .progressContent {
+  margin-top: 100px;
+}
+
+.mainContents .progressContent .progressTab .card {
+  margin-right: 5px;
+  padding: 0px;
+}
+
+.mainContents .progressContent .progressTab .card .card-body {
+  cursor: pointer;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.mainContents .progressContent .progressTab .modal-dialog {
+  width: 2500px;
+}
+
+.projectDetail .commentTab {
+  padding: 0px 30px 0px 30px;
+}
+
+.projectDetail .commentTab .taskNamePJ {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.projectDetail .commentTab .taskNamePJ .optionBug {
+  width: 15%;
+  height: 30px;
+  font-size: 13px;
+}
+
+.projectDetail .commentTab .taskNamePJ p {
+  margin-left: 20px;
+  margin-bottom: 0px;
+  font-size: 13px;
+}
+
+.projectDetail .commentTab .commentContent {
+  margin-top: 40px;
+}
+
+.projectDetail .commentTab .commentContent p {
+  margin-top: 40px;
+}
+
+.projectDetail .commentTab .commentContent .commentInput {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.projectDetail .progressTab .headerItem {
+  margin-top: 40px;
+}
+
+.projectDetail .progressTab .assignees .addMoreBox select {
+  font-size: 13px;
+}
+
+.projectDetail .commentTab .optionBug {
+  cursor: pointer;
+}
+
+.projectDetail .progressTab .headerItem:hover {
+  cursor: pointer;
+}
+
+.ProjectManagement table tr button {
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+/*# sourceMappingURL=main.css.map */

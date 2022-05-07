@@ -1,0 +1,217 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+//--------------siderBar---------------
+.siderBar{
+   
+    background: #00152A;
+    width: 64px;
+    transition: 0.1s;
+   .siderBarItem{
+       padding-top: $pd-4;
+    .createTask,.search{
+        font-size:$fs-0;
+        display: flex;
+
+        align-items: center;
+        i{
+           width: 100%;
+           padding: 10px 0px 10px 25px;
+            overflow-x: hidden;
+            color: #fff;
+            span{
+                padding-left: 32px;
+                white-space: nowrap;
+                font-weight: 300;
+        }
+    }}
+}
+}
+.siderBar:hover{
+    width: 200px;
+}
+.siderBar{
+    .createTask:hover{
+        background: $color-blue;
+        cursor: pointer;
+    }
+    .search:hover{
+        background: $color-blue;
+        cursor: pointer;
+    }
+}
+//--------------siderBar---------------
+
+//--------------menu---------------
+.menu{
+    background-color: #F4F5F7;
+    width: 300px;
+    
+    .userInfo{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: $mg-3;
+
+    img{
+        width: 40px;
+        height: 40px;   
+        margin-right: $mg-1;
+        border-radius: 50%;
+    }
+    .user-body{
+        
+        span{
+        font-size:$fs-0;
+        font-weight: 500;     
+    }
+    }
+}
+.menuItem{
+.menuItemPJ{
+    margin-top: 60px;
+    border-bottom: solid 1px #b3b5b8;
+    .list-group-item{
+        background: none;
+        border: none;
+        
+        
+        i{
+            margin-right: 6px;
+        }
+    }
+}
+.menuItemAction{
+    margin-top: 20px;
+    .list-group-item{
+        background: none;
+        border: none;
+        
+       
+        i{
+            margin-right: 6px;
+        }
+    }
+}
+}}
+.menuItem{
+.list-group{
+
+.list-group-item:hover{
+    cursor: pointer;
+    background: #c8cbcd;
+}
+}}
+//--------------menu---------------
+
+//--------------Main contents---------------
+
+.mainContents{
+    
+    padding-top: 10px;
+    padding-left: 30px !important;
+    
+    .breadcrumb{
+      padding: 0px;
+      margin-bottom: 0px;
+      background: none;
+    }
+
+    .title{
+       padding-top: 10px;
+        .navbarTab{
+            align-items: center;
+        }
+    }
+    .progressContent{
+        margin-top: 100px;
+        .progressTab{
+            .card{
+                margin-right: 5px;
+                padding: 0px;
+                .card-body{
+                    cursor: pointer;
+                    margin-left: 0px;
+                    margin-right: 0px;
+                }
+            }
+            .modal-dialog{
+                width: 2500px;
+                
+            }
+       
+    }}
+}
+
+//--------------project detail---------------
+.projectDetail{
+    
+    .commentTab{
+        padding: 0px 30px 0px 30px;
+        // background: rgb(175, 115, 125);
+        .taskNamePJ{
+            align-items: center;
+        .optionBug{
+            width: 15%;
+            height: 30px;
+            font-size: 13px;
+        }
+        p{
+            margin-left: 20px;
+            margin-bottom: 0px;
+            font-size: 13px;
+        }
+        }
+        .commentContent{
+            margin-top: 40px;
+            p{
+                margin-top: 40px;
+            }
+            .commentInput{
+                font-size: 16px;
+                font-weight: 500;
+        }}
+    }
+    .progressTab{
+        // background: rgb(142, 191, 142);
+        .headerItem{
+            margin-top: 40px;
+        }
+        .assignees{
+            .addMoreBox{
+                select{
+                    font-size: 13px;
+                }
+            }
+        }
+       
+    }
+}
+.projectDetail{
+    .commentTab{
+        .optionBug{
+            cursor: pointer;
+        }
+    }
+    .progressTab{
+        .headerItem:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+
+//--------------project management---------------
+.ProjectManagement{
+    table{
+       
+        tr{
+    button{
+        border: none;
+        width: 30px;
+        height: 30px;
+    }}}
+}
+
