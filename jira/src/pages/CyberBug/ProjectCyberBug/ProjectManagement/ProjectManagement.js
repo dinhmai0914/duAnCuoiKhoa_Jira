@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Table,
   Input,
@@ -14,8 +14,9 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import FormEditProject from "../../../../Components/Form/FormEditProject/FormEditProject";
 import { Popconfirm, message } from "antd";
+import { NavLink } from "react-router-dom";
 
-export default function ProjectManagement() {
+export default function ProjectManagement(props) {
   const projectList = useSelector(
     (state) => state.ProjectCyberbugsReducer.projectList
   );
@@ -25,6 +26,7 @@ export default function ProjectManagement() {
   );
 
   const [value, setValue] = useState(" ");
+  const searchRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -67,6 +69,7 @@ export default function ProjectManagement() {
   let { sortedInfo, filteredInfo } = state;
   sortedInfo = sortedInfo || {};
   filteredInfo = filteredInfo || {};
+
   const columns = [
     {
       title: "ID",
@@ -81,6 +84,9 @@ export default function ProjectManagement() {
       title: "Project Name",
       dataIndex: "projectName",
       key: "projectName",
+      render: (text, record, index) => {
+        return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>;
+      },
     },
     {
       title: "category",
@@ -102,7 +108,62 @@ export default function ProjectManagement() {
         return (
           <div>
             {record.members?.slice(0, 3).map((member, index) => {
-              return <Avatar key={index} src={member.avatar} />;
+              return (
+                <Popover
+                  key={index}
+                  placement="top"
+                  title="members"
+                  content={() => {
+                    return (
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Avatar</th>
+                            <th>name</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {record.members?.map((item, index) => {
+                            return (
+                              <tr key={index}>
+                                <td>{item.userId}</td>
+                                <td>
+                                  <img
+                                    src={item.avatar}
+                                    width="30"
+                                    height="30"
+                                    style={{ borderRadius: "15px" }}
+                                  />
+                                </td>
+                                <td>{item.name}</td>
+                                <td>
+                                  <button
+                                    className="btn-sm btn-danger"
+                                    onClick={() => {
+                                      dispatch({
+                                        type: "REMOVE_USER_PROJECT_API",
+                                        userProject: {
+                                          projectId: record.id,
+                                          userId: item.userId,
+                                        },
+                                      });
+                                    }}
+                                  >
+                                    <DeleteOutlined />
+                                  </button>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    );
+                  }}
+                >
+                  <Avatar key={index} src={member.avatar} />
+                </Popover>
+              );
             })}
             {record.members?.length > 3 ? <Avatar>...</Avatar> : ""}
             <Popover
@@ -114,7 +175,7 @@ export default function ProjectManagement() {
                     options={userSearch?.map((user, index) => {
                       return {
                         label: user.name,
-                        value: user.userId.toString(),
+                        value: user.userId,
                       };
                     })}
                     value={value}
@@ -122,15 +183,20 @@ export default function ProjectManagement() {
                       setValue(text);
                     }}
                     onSearch={(value) => {
-                      dispatch({ type: "GET_USER_API", keyWord: value });
+                      if (searchRef.current) {
+                        clearTimeout(searchRef.current);
+                      }
+                      searchRef.current = setTimeout(() => {
+                        dispatch({ type: "GET_USER_API", keyWord: value });
+                      }, 300);
                     }}
                     onSelect={(valueSelect, option) => {
-                      setValue(option.lable);
+                      setValue(option.label);
                       dispatch({
-                        type: "",
+                        type: "ADD_USER_PROJECT_API",
                         userProject: {
                           projectId: record.id,
-                          userId: option.value,
+                          userId: valueSelect,
                         },
                       });
                     }}
@@ -159,6 +225,7 @@ export default function ProjectManagement() {
               onClick={() => {
                 dispatch({
                   type: "OPEN_FORM_EDIT_PROJECT",
+                  title: "Edit Project",
                   Component: <FormEditProject></FormEditProject>,
                 });
                 dispatch({

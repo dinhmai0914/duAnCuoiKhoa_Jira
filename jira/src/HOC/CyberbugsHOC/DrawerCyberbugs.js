@@ -16,9 +16,8 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Footer } from "antd/lib/layout/layout";
 
 export default function DrawerCyberbugs(props) {
-  const { visible, ComponentContnetDrawer, callBackSubmit } = useSelector(
-    (state) => state.drawerReducer
-  );
+  const { visible, ComponentContnetDrawer, callBackSubmit, title } =
+    useSelector((state) => state.drawerReducer);
 
   const dispatch = useDispatch();
 
@@ -34,7 +33,7 @@ export default function DrawerCyberbugs(props) {
     <>
       {/* <button onClick={showDrawer}>Click</button> */}
       <Drawer
-        title="Create a new account"
+        title={title}
         width={720}
         onClose={onClose}
         visible={visible}

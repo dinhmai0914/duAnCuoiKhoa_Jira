@@ -67,7 +67,6 @@ function* updateProjectSaga(action) {
 
     //gọi api thành công thì dispatch lên reducer thông qua PUT
     if (status === STATUS_CODE.SUCCESS) {
-      console.log(data);
     }
     yield put({
       type: "GET_LIST_PROJECT_SAGA",
@@ -96,7 +95,6 @@ function* deleteProjectSaga(action) {
 
     //gọi api thành công thì dispatch lên reducer thông qua PUT
     if (status === STATUS_CODE.SUCCESS) {
-      console.log(data);
       notifiFunction("success", "Delete project is successfully!");
     } else {
       notifiFunction("error", "Delete project is fail!");
@@ -115,4 +113,28 @@ function* deleteProjectSaga(action) {
 
 export function* theoDoiDeleteProjectSaga() {
   yield takeLatest("DELETE_PROJECT_SAGA", deleteProjectSaga);
+}
+
+//get project detail
+function* getProjectDetailSaga(action) {
+  //gọi api lấy dữ liệu về
+
+  try {
+    const { data, status } = yield call(() =>
+      projectService.getProjectDetail(action.projectId)
+    );
+
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: "PUT_PROJECT_DETAIL",
+        getProjectDetail: data.content,
+      });
+    }
+  } catch (err) {
+    console.log("err");
+    // history.push("./projectmanagement");
+  }
+}
+export function* theoDoiGetProjectDetailSaga() {
+  yield takeLatest("GET_PROJECT_DETAIL", getProjectDetailSaga);
 }

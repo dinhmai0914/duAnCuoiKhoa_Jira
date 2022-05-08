@@ -8,10 +8,12 @@ export function* rootSaga() {
     Cyberbugs.theoDoiSignin(),
     Cyberbugs.theoDoiGetUser(),
     Cyberbugs.theoDoiAddUserProject(),
+    Cyberbugs.theoDoiRemoveUserProject(),
     ProjectCategorySaga.theoDoigetAllProjectCategory(),
     ProjectSaga.theoDoiCreateProjectSaga(),
     ProjectSaga.theoDoigetListProjectSaga(),
     ProjectSaga.theoDoiUpdateProjectSaga(),
     ProjectSaga.theoDoiDeleteProjectSaga(),
+    ProjectSaga.theoDoiGetProjectDetailSaga(),
   ]);
 }

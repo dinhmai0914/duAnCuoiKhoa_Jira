@@ -13,6 +13,7 @@ import { userService } from "../../../services/UserService";
 import { history } from "../../../util/history";
 import { TOKEN, USER_LOGIN } from "../../../util/settingSystem";
 import { USER_SIGNIN_API, USLOGIN } from "../../constant/CyberBugs";
+import { projectService } from "../../../services/ProjectService";
 
 function* signinSaga(action) {
   //Goi API
@@ -72,14 +73,37 @@ function* addUserProjectSaga(action) {
     const { data, status } = yield call(() =>
       userService.assignUserProject(action.userProject)
     );
+
     yield put({
       type: "GET_LIST_PROJECT_SAGA",
     });
   } catch (err) {
-    console.log(err.response.data);
+    console.log("loi");
   }
 }
 
 export function* theoDoiAddUserProject() {
   yield takeLatest("ADD_USER_PROJECT_API", addUserProjectSaga);
+}
+
+//--------------------------------------------------------
+
+function* removeUserProjectSaga(action) {
+  //Goi API
+
+  try {
+    const { data, status } = yield call(() =>
+      userService.deleteUserFromProject(action.userProject)
+    );
+
+    yield put({
+      type: "GET_LIST_PROJECT_SAGA",
+    });
+  } catch (err) {
+    console.log("loi");
+  }
+}
+
+export function* theoDoiRemoveUserProject() {
+  yield takeLatest("REMOVE_USER_PROJECT_API", removeUserProjectSaga);
 }

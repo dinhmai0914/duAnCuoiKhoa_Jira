@@ -19,7 +19,7 @@ import { UserLoginTemplate } from "./templates/HomeTemplate/UserLoginTemplate";
 import LoginCyberBugs from "./pages/CyberBug/LoginCyberBug/LoginCyberBugs";
 import { useDispatch } from "react-redux";
 import { CyberbugsTemplate } from "./templates/HomeTemplate/CyberbugsTemplate";
-import indexCyberbugs from "./pages/CyberBug/indexCyberbugs/indexCyberbugs";
+import IndexCyberbugs from "./pages/CyberBug/indexCyberbugs/indexCyberbugs";
 
 import "./scss/main.scss";
 import projectDetail from "./pages/CyberBug/ProjectCyberBug/projectDetail/projectDetail";
@@ -40,27 +40,37 @@ function App() {
     <>
       {/* <Modal></Modal> */}
       <DrawerCyberbugs></DrawerCyberbugs>
-
-      <Switch>
-        {/* <HomeTemplate exact path="/home" Component={Home} />
+      <Route>
+        <Switch>
+          {/* <HomeTemplate exact path="/home" Component={Home} />
         <HomeTemplate exact path="/about" Component={About} />
         <HomeTemplate exact path="/contact" Component={Contact} /> */}
-        <CyberbugsTemplate exact path="/cyberbugs" Component={indexCyberbugs} />
-        <UserLoginTemplate exact path="/login" Component={LoginCyberBugs} />
-        <CreateProjectTemplate
-          exact
-          path="/createproject"
-          Component={CreateProject}
-        />
-        {/* <HomeTemplate exact path="/profile" Component={Profile} /> */}
-        <ProjectTemplate
-          exact
-          path="/projectmanagement"
-          Component={ProjectManagement}
-        />
-        {/* <HomeTemplate exact path="/todolistrcc" Component={TodolistRCC} /> */}
-        <HomeTemplate path="*" Component={PageNotFound} />
-      </Switch>
+          <CyberbugsTemplate
+            exact
+            path="/cyberbugs"
+            Component={IndexCyberbugs}
+          />
+          <CyberbugsTemplate
+            exact
+            path="/projectdetail/:projectId"
+            Component={IndexCyberbugs}
+          />
+          <UserLoginTemplate exact path="/login" Component={LoginCyberBugs} />
+          <CreateProjectTemplate
+            exact
+            path="/createproject"
+            Component={CreateProject}
+          />
+          {/* <HomeTemplate exact path="/profile" Component={Profile} /> */}
+          <ProjectTemplate
+            exact
+            path="/projectmanagement"
+            Component={ProjectManagement}
+          />
+          {/* <HomeTemplate exact path="/todolistrcc" Component={TodolistRCC} /> */}
+          <ProjectTemplate path="/" Component={LoginCyberBugs} />
+        </Switch>
+      </Route>
     </>
   );
 }

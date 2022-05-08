@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function SiderTemplate() {
+export default function SiderTemplate(props) {
   return (
     <div className="row">
       {/*  -----------------SiderBar----------------- */}

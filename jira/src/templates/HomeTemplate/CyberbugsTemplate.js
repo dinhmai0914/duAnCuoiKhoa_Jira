@@ -6,6 +6,7 @@ import SiderTemplate from "./SiderTemplate";
 
 export const CyberbugsTemplate = (props) => {
   const { Component, ...restParam } = props;
+
   return (
     <Route
       {...restParam}
@@ -16,9 +17,9 @@ export const CyberbugsTemplate = (props) => {
               <div>
                 <SiderTemplate></SiderTemplate>
               </div>
-              <div>
-                <IndexCyberbugs></IndexCyberbugs>
-              </div>
+              <Route>
+                <IndexCyberbugs props={props}></IndexCyberbugs>
+              </Route>
             </div>
           </>
         );
