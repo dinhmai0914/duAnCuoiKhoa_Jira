@@ -1,13 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import FormCreateTask from "../../Components/Form/FormCreateTask/FormCreateTask";
 
 export default function SiderTemplate(props) {
+  const dispatch = useDispatch();
+
   return (
     <div className="row">
       {/*  -----------------SiderBar----------------- */}
       <div className="siderBar" style={{ height: window.innerHeight }}>
         <div className="siderBarItem">
-          <div className="createTask">
+          <div
+            className="createTask"
+            onClick={() => {
+              dispatch({
+                type: "OPEN_FORM_CREATE_TASK",
+                ComponentContentDrawer: <FormCreateTask></FormCreateTask>,
+                title: "Create task",
+              });
+            }}
+          >
             <i class="fa fa-plus">
               <span>Create task</span>
             </i>

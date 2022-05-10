@@ -11,7 +11,7 @@ import {
 import { cyberbugsService } from "../../../services/CyberbugsService";
 import { userService } from "../../../services/UserService";
 import { history } from "../../../util/history";
-import { TOKEN, USER_LOGIN } from "../../../util/settingSystem";
+import { STATUS_CODE, TOKEN, USER_LOGIN } from "../../../util/settingSystem";
 import { USER_SIGNIN_API, USLOGIN } from "../../constant/CyberBugs";
 import { projectService } from "../../../services/ProjectService";
 
@@ -68,7 +68,7 @@ export function* theoDoiGetUser() {
 
 function* addUserProjectSaga(action) {
   //Goi API
-
+  console.log(action);
   try {
     const { data, status } = yield call(() =>
       userService.assignUserProject(action.userProject)
@@ -78,7 +78,7 @@ function* addUserProjectSaga(action) {
       type: "GET_LIST_PROJECT_SAGA",
     });
   } catch (err) {
-    console.log("loi");
+    console.log("err", err.response.data);
   }
 }
 
@@ -106,4 +106,35 @@ function* removeUserProjectSaga(action) {
 
 export function* theoDoiRemoveUserProject() {
   yield takeLatest("REMOVE_USER_PROJECT_API", removeUserProjectSaga);
+}
+
+//--------------------------------------------------------
+
+function* getUserByProjectIdSaga(action) {
+  //Goi API
+  const { idProject } = action;
+
+  try {
+    const { data, status } = yield call(() =>
+      userService.getUserProjectById(idProject)
+    );
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: "GET_USER_BY_ID",
+        arrUser: data.content,
+      });
+    }
+  } catch (err) {
+    console.log("loi", err.response?.data);
+    if (err.response?.data.statusCode === STATUS_CODE.NOT_FOUND) {
+      yield put({
+        type: "GET_USER_BY_ID",
+        arrUser: [],
+      });
+    }
+  }
+}
+
+export function* theoDoigetUserByProjectId() {
+  yield takeLatest("GET_USER_BY_PROJECT_ID_SAGA", getUserByProjectIdSaga);
 }

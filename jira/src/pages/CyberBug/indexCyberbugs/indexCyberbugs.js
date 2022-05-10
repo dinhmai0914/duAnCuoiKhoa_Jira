@@ -6,7 +6,7 @@ import ReactHtmlParser from "react-html-parser";
 
 export default function IndexCyberbugs(props) {
   const { projectDetail } = useSelector((state) => state.ProjectReducer);
-  console.log(projectDetail);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

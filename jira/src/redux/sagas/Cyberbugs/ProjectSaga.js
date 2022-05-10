@@ -1,12 +1,16 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest, select, delay } from "redux-saga/effects";
 import { cyberbugsService } from "../../../services/CyberbugsService";
 import { projectService } from "../../../services/ProjectService";
+import { taskService } from "../../../services/TaskService";
 import { history } from "../../../util/history";
 import { notifiFunction } from "../../../util/Notification/NotificationCyberbusg";
 import { STATUS_CODE } from "../../../util/settingSystem";
 import {
+  GET_ALL_PROJECT,
   GET_ALL_PROJECT_CATEGORY,
   GET_ALL_PROJECT_CATEGORY_SAGA,
+  GET_ALL_PROJECT_SAGA,
+  GET_PROJECT_DETAIL,
 } from "../../constant/CyberBugs";
 
 function* createProjectSaga(action) {
@@ -19,10 +23,13 @@ function* createProjectSaga(action) {
 
     //gọi api thành công thì dispatch lên reducer thông qua put
     if (status === STATUS_CODE.SUCCESS) {
-      history.pushState("/projectmanagement");
+      console.log({ data });
+
+      let history = yield select((state) => state.HistoryReducer.history);
+      history.push("/projectmanagement");
     }
   } catch (err) {
-    console.log("err");
+    console.log("err", err.response.data);
   }
 }
 
@@ -33,6 +40,10 @@ export function* theoDoiCreateProjectSaga() {
 
 function* getListProjectSaga() {
   //gọi api lấy dữ liệu về
+  yield put({
+    type: "DISPLAY_LOADING",
+  });
+  yield delay(500);
 
   try {
     const { data, status } = yield call(() =>
@@ -49,6 +60,9 @@ function* getListProjectSaga() {
   } catch (err) {
     console.log("err");
   }
+  yield put({
+    type: "HIDE_LOADING",
+  });
 }
 
 export function* theoDoigetListProjectSaga() {
@@ -59,7 +73,10 @@ export function* theoDoigetListProjectSaga() {
 
 function* updateProjectSaga(action) {
   //gọi api lấy dữ liệu về
-
+  yield put({
+    type: "DISPLAY_LOADING",
+  });
+  yield delay(500);
   try {
     const { data, status } = yield call(() =>
       cyberbugsService.updateProject(action.projectUpdate)
@@ -77,6 +94,9 @@ function* updateProjectSaga(action) {
   } catch (err) {
     console.log(err);
   }
+  yield put({
+    type: "HIDE_LOADING",
+  });
 }
 
 export function* theoDoiUpdateProjectSaga() {
@@ -118,7 +138,10 @@ export function* theoDoiDeleteProjectSaga() {
 //get project detail
 function* getProjectDetailSaga(action) {
   //gọi api lấy dữ liệu về
-
+  yield put({
+    type: "DISPLAY_LOADING",
+  });
+  yield delay(500);
   try {
     const { data, status } = yield call(() =>
       projectService.getProjectDetail(action.projectId)
@@ -134,7 +157,87 @@ function* getProjectDetailSaga(action) {
     console.log("err");
     // history.push("./projectmanagement");
   }
+  yield put({
+    type: "HIDE_LOADING",
+  });
 }
 export function* theoDoiGetProjectDetailSaga() {
   yield takeLatest("GET_PROJECT_DETAIL", getProjectDetailSaga);
+}
+
+//get all project
+function* getAllProjectSaga(action) {
+  //gọi api lấy dữ liệu về
+  yield put({
+    type: "DISPLAY_LOADING",
+  });
+  yield delay(500);
+  try {
+    const { data, status } = yield call(() =>
+      projectService.getAllProject(action)
+    );
+
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: "GET_ALL_PROJECT",
+        arrProject: data.content,
+      });
+    }
+  } catch (err) {
+    console.log("err");
+  }
+  yield put({
+    type: "HIDE_LOADING",
+  });
+}
+export function* theoDoiGetAllProjectSaga() {
+  yield takeLatest("GET_ALL_PROJECT_SAGA", getAllProjectSaga);
+}
+
+//get all task type
+function* getAllTaskTypeSaga(action) {
+  //gọi api lấy dữ liệu về
+
+  try {
+    const { data, status } = yield call(() =>
+      projectService.getAllTaskType(action)
+    );
+
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: "GET_ALL_TASKTYPE",
+        taskType: data.content,
+      });
+    }
+  } catch (err) {
+    console.log("err");
+    // history.push("./projectmanagement");
+  }
+}
+export function* theoDoiGetAllTaskType() {
+  yield takeLatest("GET_ALL_TASKTYPE_SAGA", getAllTaskTypeSaga);
+}
+
+//get task priority
+function* getTaskPriority(action) {
+  //gọi api lấy dữ liệu về
+
+  try {
+    const { data, status } = yield call(() =>
+      projectService.getTaskPriority(action)
+    );
+
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: "GET_TASK_PRIORITY",
+        taskPriority: data.content,
+      });
+    }
+  } catch (err) {
+    console.log("err");
+    // history.push("./projectmanagement");
+  }
+}
+export function* theoDoigetTaskPriority() {
+  yield takeLatest("GET_ALL_PRIORITY_SAGA", getTaskPriority);
 }

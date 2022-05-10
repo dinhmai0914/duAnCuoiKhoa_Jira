@@ -6,7 +6,7 @@ if (localStorage.getItem(USER_LOGIN)) {
   usLogin = JSON.parse(localStorage.getItem(USER_LOGIN));
 }
 
-const stateDefault = { userLogin: usLogin, userSearch: [] };
+const stateDefault = { userLogin: usLogin, userSearch: [], arrUser: [] };
 
 export const UserLoginCyberBugsReducer = (state = stateDefault, action) => {
   switch (action.type) {
@@ -20,6 +20,13 @@ export const UserLoginCyberBugsReducer = (state = stateDefault, action) => {
 
       return { ...state };
     }
+
+    case "GET_USER_BY_ID": {
+      state.arrUser = action.arrUser;
+
+      return { ...state };
+    }
+
     default:
       return { ...state };
   }

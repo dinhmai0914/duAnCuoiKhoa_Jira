@@ -1,3 +1,5 @@
+import Axios from "axios";
+import { DOMAIN_cyberbug, TOKEN } from "../util/settingSystem";
 import { baseService } from "./baseService";
 
 export class UserService extends baseService {
@@ -14,6 +16,10 @@ export class UserService extends baseService {
 
   deleteUserFromProject = (userProject) => {
     return this.post(`Project/removeUserFromProject`, userProject);
+  };
+
+  getUserProjectById = (idProject) => {
+    return this.get(`Users/getUserByProjectId?idProject=${idProject}`);
   };
 }
 

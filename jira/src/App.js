@@ -28,6 +28,7 @@ import CreateProjectTemplate from "./templates/HomeTemplate/CreateProjectTemplat
 import ProjectManagement from "./pages/CyberBug/ProjectCyberBug/ProjectManagement/ProjectManagement";
 import ProjectTemplate from "./templates/HomeTemplate/ProjectTemplate";
 import DrawerCyberbugs from "./HOC/CyberbugsHOC/DrawerCyberbugs";
+import LoadingComponent from "./Components/GlobalSetting/LoadingComponent";
 
 function App() {
   const history = useHistory();
@@ -39,6 +40,7 @@ function App() {
   return (
     <>
       {/* <Modal></Modal> */}
+      <LoadingComponent></LoadingComponent>
       <DrawerCyberbugs></DrawerCyberbugs>
       <Route>
         <Switch>

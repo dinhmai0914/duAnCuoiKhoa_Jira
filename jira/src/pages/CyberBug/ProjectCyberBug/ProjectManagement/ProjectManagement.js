@@ -37,6 +37,9 @@ export default function ProjectManagement(props) {
 
   useEffect(() => {
     dispatch({ type: "GET_LIST_PROJECT_SAGA" });
+    // searchRef.current = setTimeout(() => {
+    //   dispatch({ type: "GET_USER_API", keyWord: value });
+    // }, 300);
   }, []);
 
   const handleChange = (pagination, filters, sorter) => {
