@@ -21,12 +21,12 @@ export default function SiderTemplate(props) {
               });
             }}
           >
-            <i class="fa fa-plus">
+            <i className="fa fa-plus">
               <span>Create task</span>
             </i>
           </div>
           <div className="search">
-            <i class="fa fa-search">
+            <i className="fa fa-search" style={{ cursor: "not-allowed" }}>
               <span>Search</span>
             </i>
           </div>
@@ -45,23 +45,24 @@ export default function SiderTemplate(props) {
         <div className="menuItem">
           <div className="menuItemPJ ">
             <ul className="list-group">
-              <li className="list-group-item ">
+              <li className="list-group-item text-left ">
                 <NavLink
                   className="text-dark"
                   to="/cyberbugs"
                   activeClassName="active"
                 >
-                  <i class="fa fa-archive"></i>
+                  <i className="fa fa-archive text-left"></i>
                   Cyber boards
                 </NavLink>
               </li>
-              <li className="list-group-item">
+
+              <li className="list-group-item active">
                 <NavLink
                   className="text-dark"
                   to="/projectmanagement"
                   activeClassName="active"
                 >
-                  <i class="fa fa-cog"></i> Project Management
+                  <i className="fa fa-cog"></i> Project Management
                 </NavLink>
               </li>
               <li className="list-group-item">
@@ -70,30 +71,30 @@ export default function SiderTemplate(props) {
                   to="/createproject"
                   activeClassName="active"
                 >
-                  <i class="fa fa-cog"></i> Create Project
+                  <i className="fa fa-cog"></i> Create Project
                 </NavLink>
               </li>
             </ul>
           </div>
           <div className="menuItemAction">
             <ul className="list-group">
-              <li className="list-group-item">
-                <i class="fa fa-truck"></i> <span>Release</span>
+              <li className="list-group-item" style={{ cursor: "not-allowed" }}>
+                <i className="fa fa-truck"></i> <span>Release</span>
               </li>
-              <li className="list-group-item">
-                <i class="fa fa-grip-lines"></i>
+              <li className="list-group-item" style={{ cursor: "not-allowed" }}>
+                <i className="fa fa-grip-lines"></i>
                 <span>Issues and fillters</span>
               </li>
-              <li className="list-group-item">
-                <i class="fa fa-paste"></i>
+              <li className="list-group-item" style={{ cursor: "not-allowed" }}>
+                <i className="fa fa-paste"></i>
                 <span>Page</span>
               </li>
-              <li className="list-group-item">
-                <i class="fa fa-location-arrow"></i>
+              <li className="list-group-item" style={{ cursor: "not-allowed" }}>
+                <i className="fa fa-location-arrow"></i>
                 <span>Reports</span>
               </li>
-              <li className="list-group-item">
-                <i class="fa fa-box"></i>
+              <li className="list-group-item" style={{ cursor: "not-allowed" }}>
+                <i className="fa fa-box"></i>
                 <span>Components</span>
               </li>
             </ul>

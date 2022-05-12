@@ -63,9 +63,14 @@ function FormCreateTask(props) {
 
   return (
     <form className="container" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <p>Project</p>
+      <div className="form-group mb-4">
+        <p className="mb-0">Project</p>
         <select
+          style={{
+            fontSize: "15px",
+            background: "rgb(244, 245, 247)",
+            cursor: "pointer",
+          }}
           name="projectId"
           className="form-control"
           onChange={(e) => {
@@ -88,17 +93,25 @@ function FormCreateTask(props) {
         </select>
       </div>
       <div className="form-group">
-        <p>Task Name</p>
+        <p className="mb-0">Task Name</p>
         <input
+          style={{
+            fontSize: "15px",
+          }}
           name="taskName"
           className="form-control"
           onChange={handleChange}
         />
       </div>
 
-      <div className="form-group">
-        <p>Status</p>
+      <div className="form-group mt-4">
+        <p className="mb-0">Status</p>
         <select
+          style={{
+            fontSize: "15px",
+            background: "rgb(244, 245, 247)",
+            cursor: "pointer",
+          }}
           name="statusId"
           className="form-control"
           onChange={handleChange}
@@ -115,9 +128,14 @@ function FormCreateTask(props) {
 
       <div className="form-group">
         <div className="row">
-          <div className="col-6">
-            <p>Priority</p>
+          <div className="col-6 mt-3">
+            <p className="mb-0">Priority</p>
             <select
+              style={{
+                fontSize: "15px",
+                background: "rgb(244, 245, 247)",
+                cursor: "pointer",
+              }}
               name="priorityId"
               className="form-control"
               onChange={handleChange}
@@ -132,9 +150,14 @@ function FormCreateTask(props) {
             </select>
           </div>
 
-          <div className="col-6">
-            <p>Task type</p>
+          <div className="col-6 mt-3">
+            <p className="mb-0">Task type</p>
             <select
+              style={{
+                fontSize: "15px",
+                background: "rgb(244, 245, 247)",
+                cursor: "pointer",
+              }}
               name="typeId"
               className="form-control"
               onChange={handleChange}
@@ -152,9 +175,14 @@ function FormCreateTask(props) {
       </div>
       <div className="form-group">
         <div className="row">
-          <div className="col-6">
-            <p>Assigner</p>
+          <div className="col-6 mt-3">
+            <p className="mb-0">Assigner</p>
             <Select
+              style={{
+                fontSize: "15px",
+
+                width: "100%",
+              }}
               name="listUserAsign"
               mode="tags"
               size="default"
@@ -166,15 +194,18 @@ function FormCreateTask(props) {
               onSearch={(value) => {
                 console.log("value", value);
               }}
-              style={{ width: "100%" }}
               options={userOption}
             >
               {children}
             </Select>
             <div className="row mt-3">
-              <div className="col-12" onChange={handleChange}>
-                <p>Original estimate</p>
+              <div className="col-12 mt-3" onChange={handleChange}>
+                <p className="mb-0">Original estimate</p>
                 <input
+                  style={{
+                    fontSize: "15px",
+                    background: "rgb(244, 245, 247)",
+                  }}
                   className="form-control"
                   name="originalEstimate"
                   type="number"
@@ -185,8 +216,8 @@ function FormCreateTask(props) {
             </div>
           </div>
 
-          <div className="col-6">
-            <p>Time tracking</p>
+          <div className="col-6 mt-3">
+            <p className="mb-0">Time tracking</p>
             <Slider
               defaultValue={30}
               max={
@@ -204,9 +235,13 @@ function FormCreateTask(props) {
               </div>
             </div>
             <div className="row" style={{ marginTop: 5 }}>
-              <div className="col-6" onChange={handleChange}>
-                <p>Time spent </p>
+              <div className="col-6 mt-1" onChange={handleChange}>
+                <p className="mb-0">Time spent </p>
                 <input
+                  style={{
+                    fontSize: "15px",
+                    background: "rgb(244, 245, 247)",
+                  }}
                   className="form-control"
                   name="timeTrackingSpent"
                   type="number"
@@ -221,9 +256,13 @@ function FormCreateTask(props) {
                   }}
                 />
               </div>
-              <div className="col-6" onChange={handleChange}>
-                <p>Time remaining </p>
+              <div className="col-6 mt-1" onChange={handleChange}>
+                <p className="mb-0">Time remaining </p>
                 <input
+                  style={{
+                    fontSize: "15px",
+                    background: "rgb(244, 245, 247)",
+                  }}
                   className="form-control"
                   name="timeTrackingRemaining"
                   type="number"
@@ -242,8 +281,8 @@ function FormCreateTask(props) {
           </div>
         </div>
       </div>
-      <div className="form-group">
-        <p>Description</p>
+      <div className="form-group mt-5">
+        <p className="mb-0">Description</p>
         <Editor
           onChange={handleChange}
           name="description"
@@ -303,7 +342,6 @@ const formCreateTask = withFormik({
       taskObject: values,
     };
     props.dispatch(action);
-    console.log("taskObject", values);
   },
 
   displayName: "CreateTaskForm",

@@ -36,19 +36,19 @@ function CreateProject(props) {
   }, []);
 
   return (
-    <div className="container m-5 col">
-      <h3>Create Project</h3>
+    <div className="container mt-4 col pl-5">
+      <h4 style={{ color: "rgb(94, 108, 132)" }}>Create Project</h4>
       <form
         className="container"
         onSubmit={handleSubmit}
         onChange={handleChange}
       >
         <div className="form-group">
-          <p>Name</p>
+          <p className="mb-0">Name</p>
           <input className="'form-control" name="projectName" />
         </div>
         <div className="form-group">
-          <p>description</p>
+          <p className="mb-0">Description</p>
 
           <Editor
             name="description"
@@ -75,20 +75,31 @@ function CreateProject(props) {
         </div>
         <div className="form-group">
           <select
+            style={{
+              fontSize: "15px",
+              background: "rgb(244, 245, 247)",
+              cursor: "pointer",
+            }}
             className="form-control"
             name="categoryId"
             onChange={handleChange}
           >
             {arrProjectCategory.map((item, index) => {
               return (
-                <option value={item.id} key={index}>
+                <option
+                  style={{
+                    fontSize: "15px",
+                  }}
+                  value={item.id}
+                  key={index}
+                >
                   {item.projectCategoryName}
                 </option>
               );
             })}
           </select>
         </div>
-        <button className="btn btn-outline-primary" type="submit">
+        <button className="btn-sm btn-primary" type="submit">
           Create project
         </button>
       </form>

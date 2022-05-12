@@ -261,16 +261,17 @@ export default function ProjectManagement(props) {
     },
   ];
   return (
-    <div className="container mt-5 col pl-5">
+    <div className="container mt-4 col pl-5">
       <div>
-        <h3>Project Management</h3>
+        <h4 style={{ color: "rgb(94, 108, 132)" }}>Project Management</h4>
       </div>
-      <Space style={{ marginBottom: 16 }}>
+      {/* <Space style={{ marginBottom: 16 }}>
         <Button onClick={setAgeSort}>Sort age</Button>
         <Button onClick={clearFilters}>Clear filters</Button>
         <Button onClick={clearAll}>Clear filters and sorters</Button>
-      </Space>
+      </Space> */}
       <Table
+        className="mt-4 shadow rounded"
         columns={columns}
         dataSource={projectList}
         onChange={handleChange}

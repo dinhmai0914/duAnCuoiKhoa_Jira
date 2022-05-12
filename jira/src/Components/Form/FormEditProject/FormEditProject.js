@@ -49,8 +49,13 @@ function FormEditProject(props) {
       <div className="row">
         <div className="col-4">
           <div className="form-group">
-            <p className="font-weight-bold">Project id</p>
+            <p className="mb-0">Project id</p>
             <input
+              style={{
+                fontSize: "15px",
+                background: "rgb(244, 245, 247)",
+                cursor: "pointer",
+              }}
               value={values.id}
               type="text"
               className="form-control"
@@ -62,8 +67,13 @@ function FormEditProject(props) {
 
         <div className="col-4">
           <div className="form-group">
-            <p className="font-weight-bold">Project name</p>
+            <p className="mb-0">Project name</p>
             <input
+              style={{
+                fontSize: "15px",
+                background: "rgb(244, 245, 247)",
+                cursor: "pointer",
+              }}
               value={values.projectName}
               type="text"
               className="form-control"
@@ -75,8 +85,13 @@ function FormEditProject(props) {
 
         <div className="col-4">
           <div className="form-group">
-            <p className="font-weight-bold">Project Category</p>
+            <p className="mb-0">Project Category</p>
             <select
+              style={{
+                fontSize: "15px",
+                background: "rgb(244, 245, 247)",
+                cursor: "pointer",
+              }}
               className="form-control"
               name="categoryId"
               onChange={handleChange}
@@ -95,7 +110,7 @@ function FormEditProject(props) {
 
         <div className="col-12">
           <div className="form-group">
-            <p className="font-weight-bold">Description</p>
+            <p className="mb-0">Description</p>
             <Editor
               name="description"
               onInit={(evt, editor) => (editorRef.current = editor)}

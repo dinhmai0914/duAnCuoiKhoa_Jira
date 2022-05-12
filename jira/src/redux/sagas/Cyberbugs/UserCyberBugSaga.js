@@ -12,9 +12,40 @@ import { cyberbugsService } from "../../../services/CyberbugsService";
 import { userService } from "../../../services/UserService";
 import { history } from "../../../util/history";
 import { STATUS_CODE, TOKEN, USER_LOGIN } from "../../../util/settingSystem";
-import { USER_SIGNIN_API, USLOGIN } from "../../constant/CyberBugs";
+import {
+  USER_SIGNIN_API,
+  USER_SIGNUP_API,
+  USLOGIN,
+} from "../../constant/CyberBugs";
 import { projectService } from "../../../services/ProjectService";
 
+//sign up
+
+function* signUpSaga(action) {
+  //Goi API
+  try {
+    const { data, status } = yield call(() =>
+      cyberbugsService.signUpCyberBugs(action.userSignUp)
+    );
+
+    yield put({
+      type: "USSIGNUP",
+      userSignUp: data.content,
+    });
+
+    let history = yield select((state) => state.HistoryReducer.history);
+    history.push("/login");
+  } catch (err) {
+    console.log(err.response.data);
+    alert("data is not valid !");
+  }
+}
+
+export function* theoDoiSignUp() {
+  yield takeLatest(USER_SIGNUP_API, signUpSaga);
+}
+
+//sign in
 function* signinSaga(action) {
   //Goi API
   try {
@@ -31,7 +62,7 @@ function* signinSaga(action) {
     });
 
     let history = yield select((state) => state.HistoryReducer.history);
-    history.push("/home");
+    history.push("/projectmanagement");
   } catch (err) {
     console.log(err.response.data);
   }

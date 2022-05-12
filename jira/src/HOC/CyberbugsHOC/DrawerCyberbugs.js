@@ -40,10 +40,10 @@ export default function DrawerCyberbugs(props) {
         bodyStyle={{ paddingBottom: 80 }}
         extra={
           <Space>
-            <Button onClick={onClose}>Cancel</Button>
             <Button onClick={callBackSubmit} type="primary">
-              Update
+              Create
             </Button>
+            <Button onClick={onClose}>Cancel</Button>
           </Space>
         }
       >

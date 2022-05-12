@@ -7,7 +7,9 @@ import * as StatusSaga from "./Cyberbugs/StatusSaga";
 
 export function* rootSaga() {
   yield all([
+    StatusSaga.theoDoiGetAllStatusSaga(),
     Cyberbugs.theoDoiSignin(),
+    Cyberbugs.theoDoiSignUp(),
     Cyberbugs.theoDoiGetUser(),
     Cyberbugs.theoDoiAddUserProject(),
     Cyberbugs.theoDoiRemoveUserProject(),
@@ -22,6 +24,9 @@ export function* rootSaga() {
     ProjectSaga.theoDoiGetAllTaskType(),
     ProjectSaga.theoDoigetTaskPriority(),
     TaskSaga.theoDoiCreateTask(),
-    StatusSaga.theoDoiGetAllStatusSaga(),
+    TaskSaga.theoDoigetTaskDetailSaga(),
+    TaskSaga.theoDoiupdateTaskStatusSaga(),
+    TaskSaga.theoDoiupdateTaskSaga(),
+    TaskSaga.theoDoihandelChangePostApi(),
   ]);
 }

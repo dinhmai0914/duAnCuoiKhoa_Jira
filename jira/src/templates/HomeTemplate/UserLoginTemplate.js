@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import Login from "../../pages/Login/Login";
+
 import LoginCyberBugs from "../../pages/CyberBug/LoginCyberBug/LoginCyberBugs";
 import { Layout } from "antd";
 const { Header, Footer, Sider, Content } = Layout;

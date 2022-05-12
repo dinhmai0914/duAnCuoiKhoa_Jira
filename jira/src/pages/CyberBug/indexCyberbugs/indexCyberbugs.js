@@ -19,38 +19,65 @@ export default function IndexCyberbugs(props) {
   }, []);
 
   const renderProgressTab = () => {
-    return projectDetail.lstTask?.map((task, index) => {
+    return projectDetail.lstTask?.map((taskListDetail, index) => {
       return (
         <div
-          data-toggle="modal"
-          data-target="#exampleModal"
           key={index}
-          className="card mr-2 mt-5"
-          style={{ width: "18rem", cursor: "pointer" }}
+          className="card mr-2 mt-5 shadow rounded border-0"
+          style={{
+            width: "18rem",
+            height: "auto",
+            background: "rgb(244, 245, 247)",
+          }}
         >
-          <div className="card-header">BACKLOG</div>
+          <div className="card-header" style={{ color: "rgb(94, 108, 132)" }}>
+            {taskListDetail.statusName}
+          </div>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Recusandae, neque?
-              </p>
-              <div className="block">
-                <div className="block-left d-flex justify-content-start">
-                  <i className="fa fa-bookmark " style={{ color: "green" }}></i>
-                  <i className="fa fa-arrow-up" style={{ color: "red" }}></i>
-                </div>
-                <div className="block-right  ">
-                  <div className="avatar-group d-flex justify-content-end">
-                    <div className="avatar">
-                      <img src="https://picsum.photos/20" alt="" />
+            {taskListDetail.lstTaskDeTail?.map((task, index) => {
+              return (
+                <li
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  key={index}
+                  className="list-group-item"
+                  onClick={() => {
+                    dispatch({
+                      type: "GET_TASK_DETAIL_SAGA",
+                      taskId: task.taskId,
+                    });
+                  }}
+                >
+                  <p style={{ color: "#172B4D" }}>{task.taskName}</p>
+                  <div className="row">
+                    <div className=" col-3 ">
+                      <p className="text-danger">
+                        {task.priorityTask.priority}
+                      </p>
+                    </div>
+                    <div className="col-9">
+                      <div className="avatar-group d-flex  pull-right">
+                        {task.assigness?.map((member, index) => {
+                          return (
+                            <div key={index} className="avatar overflow-hidden">
+                              <img
+                                src={member.avatar}
+                                alt="member.avatar"
+                                style={{ width: "30px", height: "30px" }}
+                                className="rounded-circle mr-1 "
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </li>
-
-            <li className="list-group-item">Lorem ipsum dolor sit amet.</li>
+                </li>
+              );
+            })}
           </ul>
         </div>
       );
@@ -62,11 +89,18 @@ export default function IndexCyberbugs(props) {
       <div className="breadcrumb">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="createproject">Create Project</a>
+            <li className="breadcrumb-item ">
+              <a style={{ color: "rgb(94, 108, 132)" }} href="/createproject">
+                Create Project
+              </a>
             </li>
             <li className="breadcrumb-item">
-              <a href="/projectmanagement">Project Management</a>
+              <a
+                style={{ color: "rgb(94, 108, 132)" }}
+                href="/projectmanagement"
+              >
+                Project Management
+              </a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {projectDetail.projectName}
@@ -82,14 +116,15 @@ export default function IndexCyberbugs(props) {
           {ReactHtmlParser(projectDetail.description)}
         </div>
         <div className="navbarTab d-flex">
-          <form className="form-inline my-2 my-lg-0">
+          {/* <form className="form-inline my-2 my-lg-0">
             <input
               className="form-control mr-sm-2"
               type="search"
               placeholder="search"
               aria-label="Search"
+              style={{ background: "rgb(244, 245, 247)" }}
             />
-          </form>
+          </form> */}
 
           <div className="d-flex ">
             {projectDetail.members?.map((user, index) => {
@@ -128,23 +163,17 @@ export default function IndexCyberbugs(props) {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span aria-hidden="true">×</span>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
                 </button>
               </div>
               <div className="modal-body">
                 <ProjectDetail projectDetail={projectDetail}></ProjectDetail>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" className="btn btn-primary">
-                  Save changes
-                </button>
               </div>
             </div>
           </div>
@@ -153,6 +182,3 @@ export default function IndexCyberbugs(props) {
     </div>
   );
 }
-
-// data-toggle="modal"
-// data-target="#exampleModal"

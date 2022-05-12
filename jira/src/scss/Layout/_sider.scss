@@ -1,12 +1,13 @@
 *{
     margin: 0px;
     padding: 0px;
-    font-family: 'Roboto', sans-serif;
+    // font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 //--------------siderBar---------------
 .siderBar{
    
-    background: #00152A;
+    background: rgb(7, 71, 166);
     width: 64px;
     transition: 0.1s;
    .siderBarItem{
@@ -46,7 +47,7 @@
 
 //--------------menu---------------
 .menu{
-    background-color: #F4F5F7;
+    background-color: rgb(244, 245, 247);
     width: 300px;
     
     .userInfo{
@@ -131,6 +132,7 @@
             .card{
                 margin-right: 5px;
                 padding: 0px;
+               
                 .card-body{
                     cursor: pointer;
                     margin-left: 0px;
@@ -144,6 +146,8 @@
        
     }}
 }
+
+
 
 //--------------project detail---------------
 .projectDetail{
@@ -166,23 +170,21 @@
         }
         .commentContent{
             margin-top: 40px;
-            p{
-                margin-top: 40px;
-            }
+            
             .commentInput{
                 font-size: 16px;
                 font-weight: 500;
+               
         }}
     }
     .progressTab{
-        // background: rgb(142, 191, 142);
-        .headerItem{
-            margin-top: 40px;
-        }
+     
+       
         .assignees{
             .addMoreBox{
                 select{
                     font-size: 13px;
+                    
                 }
             }
         }

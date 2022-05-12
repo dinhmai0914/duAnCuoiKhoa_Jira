@@ -2,14 +2,26 @@ import { USER_LOGIN } from "../../util/settingSystem";
 import { USLOGIN } from "../constant/CyberBugs";
 
 let usLogin = {};
+
 if (localStorage.getItem(USER_LOGIN)) {
   usLogin = JSON.parse(localStorage.getItem(USER_LOGIN));
 }
 
-const stateDefault = { userLogin: usLogin, userSearch: [], arrUser: [] };
+const stateDefault = {
+  userSignUp: {},
+  userLogin: usLogin,
+  userSearch: [],
+  arrUser: [],
+};
 
 export const UserLoginCyberBugsReducer = (state = stateDefault, action) => {
+  console.log(action);
   switch (action.type) {
+    case "USSIGNUP": {
+      state.userSignUp = action.userSignUp;
+      return { ...state };
+    }
+
     case USLOGIN: {
       state.userLogin = action.userLogin;
       return { ...state };
